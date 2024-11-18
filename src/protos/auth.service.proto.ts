@@ -5,7 +5,7 @@ import { JWT_SECRET } from "../config/dotenv";
 import { TokenRequest, TokenResult } from './auth';
 
 
-export async function VerifyToken(
+export async function verifyToken(
     call: ServerUnaryCall<TokenRequest, TokenResult>,
     callback: sendUnaryData<TokenResult>
 ) {
@@ -16,7 +16,7 @@ export async function VerifyToken(
             id: "",
             name: "",
             email: "",
-            image: "",
+            picture: "",
             expires: "",
         }
     }
@@ -37,7 +37,7 @@ export async function VerifyToken(
                                 id: decoded.data.id,
                                 name: decoded.data.name,
                                 email: decoded.data.email,
-                                image: decoded.data.image,
+                                picture: decoded.data.picture,
                                 expires: decoded.data.expires,
                             }
                         }
@@ -50,7 +50,7 @@ export async function VerifyToken(
                                         id: "",
                                         name: "",
                                         email: "",
-                                        image: "",
+                                        picture: "",
                                         expires: "",
                                     }
                                 }

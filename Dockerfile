@@ -1,4 +1,4 @@
-# Use official Node.js image as base
+# Use official Node.js picture as base
 FROM node:22
 
 # Set working directory

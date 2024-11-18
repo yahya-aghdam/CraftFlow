@@ -19,7 +19,6 @@ export default class AuthController {
 
         if (gAuth) {
             const tokenVerification: boolean = await this.authService.tokenVerify(gAuth, true)
-            console.log("🚀 ~ AuthController ~ register_login ~ tokenVerification:", tokenVerification)
 
             if (tokenVerification) {
                 res.redirect(SUCCESS_AUTH_REDIRECT_PATH)
@@ -54,7 +53,7 @@ export default class AuthController {
                 decodedToken = {
                     id: user.id ,
                     name: user.name,
-                    image: user.picture ,
+                    picture: user.picture ,
                     email: user.email,
                     expires
                 };

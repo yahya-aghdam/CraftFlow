@@ -7,7 +7,7 @@ import { GetTokenRequestInputT, GetTokenRequestReturn} from './interface';
 export default class AuthService {
 
     async tokenVerify(token: string, checkTime: boolean = false,): Promise<boolean> {
-        let is_verified = false
+        let isVerified = false
 
         if (token != undefined) {
 
@@ -18,9 +18,9 @@ export default class AuthService {
                     function (err: any, decoded: any) {
                         if (decoded) {
                             if (checkTime) {
-                                is_verified = true;
+                                isVerified = true;
                                 if (new Date(decoded.data.expires) <= new Date(Date.now())) {
-                                    is_verified = false;
+                                    isVerified = false;
                                 }
                             }
                         } else {
@@ -36,7 +36,7 @@ export default class AuthService {
             DEV_MODE && console.log(`Token is undefined`);
         }
 
-        return is_verified
+        return isVerified
     }
 
     async getTokenRequest({

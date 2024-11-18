@@ -1,6 +1,6 @@
 import linksmith from "linksmith";
 import { ProviderURLT } from "../interface";
-import { API_PATH, MAIN_URL, HTTP_PORT, COOKIE_DOMAIN, PROTO_PORT, PROTO_URL } from "./dotenv";
+import { MAIN_URL, HTTP_PORT, COOKIE_DOMAIN, PROTO_PORT, PROTO_URL } from "./dotenv";
 import { CookieOptions } from "express";
 
 export const DEV_MODE = true;

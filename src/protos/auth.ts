@@ -25,7 +25,7 @@ export interface TokenData {
   id: string;
   name: string;
   email: string;
-  image: string;
+  picture: string;
   expires: string;
 }
 
@@ -40,7 +40,7 @@ export interface TokenResult {
 }
 
 function createBaseTokenData(): TokenData {
-  return { id: "", name: "", email: "", image: "", expires: "" };
+  return { id: "", name: "", email: "", picture: "", expires: "" };
 }
 
 export const TokenData: MessageFns<TokenData> = {
@@ -54,8 +54,8 @@ export const TokenData: MessageFns<TokenData> = {
     if (message.email !== "") {
       writer.uint32(26).string(message.email);
     }
-    if (message.image !== "") {
-      writer.uint32(34).string(message.image);
+    if (message.picture !== "") {
+      writer.uint32(34).string(message.picture);
     }
     if (message.expires !== "") {
       writer.uint32(42).string(message.expires);
@@ -99,7 +99,7 @@ export const TokenData: MessageFns<TokenData> = {
             break;
           }
 
-          message.image = reader.string();
+          message.picture = reader.string();
           continue;
         }
         case 5: {
@@ -124,7 +124,7 @@ export const TokenData: MessageFns<TokenData> = {
       id: isSet(object.id) ? globalThis.String(object.id) : "",
       name: isSet(object.name) ? globalThis.String(object.name) : "",
       email: isSet(object.email) ? globalThis.String(object.email) : "",
-      image: isSet(object.image) ? globalThis.String(object.image) : "",
+      picture: isSet(object.picture) ? globalThis.String(object.picture) : "",
       expires: isSet(object.expires) ? globalThis.String(object.expires) : "",
     };
   },
@@ -140,8 +140,8 @@ export const TokenData: MessageFns<TokenData> = {
     if (message.email !== "") {
       obj.email = message.email;
     }
-    if (message.image !== "") {
-      obj.image = message.image;
+    if (message.picture !== "") {
+      obj.picture = message.picture;
     }
     if (message.expires !== "") {
       obj.expires = message.expires;
@@ -157,7 +157,7 @@ export const TokenData: MessageFns<TokenData> = {
     message.id = object.id ?? "";
     message.name = object.name ?? "";
     message.email = object.email ?? "";
-    message.image = object.image ?? "";
+    message.picture = object.picture ?? "";
     message.expires = object.expires ?? "";
     return message;
   },
@@ -318,7 +318,7 @@ export const TokenResult: MessageFns<TokenResult> = {
 export type AuthCheckService = typeof AuthCheckService;
 export const AuthCheckService = {
   verifyToken: {
-    path: "/auth.AuthCheck/VerifyToken",
+    path: "/auth.AuthCheck/verifyToken",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value: TokenRequest) => Buffer.from(TokenRequest.encode(value).finish()),

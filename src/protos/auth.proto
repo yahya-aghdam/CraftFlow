@@ -5,7 +5,7 @@ package auth;
 
 
 service AuthCheck {
-    rpc VerifyToken (TokenRequest) returns (TokenResult);
+    rpc verifyToken (TokenRequest) returns (TokenResult);
 }
 
 
@@ -13,7 +13,7 @@ message TokenData {
     string id = 1;
     string name = 2;
     string email = 3;
-    string image = 4;
+    string picture = 4;
     string expires = 5;
 }
 
