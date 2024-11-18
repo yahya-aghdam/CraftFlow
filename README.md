@@ -1,2 +1,3 @@
-# CraftFlow
-CraftFlow is a powerful, flexible, and user-friendly Content Management System designed to make content creation, management, and distribution simple and efficient with microservice architecture
+# gAuthCraft
+
+gAuthCraft is a light microservice and flexible auth system for Google Oauth 2 that works with gRPC and easily deploy with Docker.
