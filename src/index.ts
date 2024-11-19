@@ -1,6 +1,6 @@
 import express from 'express';
 import authRoutes from './auth.routes';
-import { API_PATH, HTTP_PORT, MAIN_URL, PROTO_PORT, PROTO_URL } from './config/dotenv';
+import { API_PATH, HTTP_PORT, MAIN_URL} from './config/dotenv';
 import { validateEnv } from './util';
 import { DEV_MODE, proto_url } from './config/constants';
 import { Server, ServerCredentials } from '@grpc/grpc-js';
