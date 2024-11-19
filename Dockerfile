@@ -1,5 +1,5 @@
 # Make dev app
-FROM node:22-alpine as development
+FROM node:22-alpine AS development
 
 WORKDIR /usr/src/app/gAuthCraft
 
@@ -12,13 +12,13 @@ COPY . .
 RUN npm run build
 
 # Optimize app for production
-FROM node:22-alpine as production
+FROM node:22-alpine AS production
 
 WORKDIR /usr/src/app/gAuthCraft
 
 COPY package*.json .
 
-RUN npm ci --only=production
+RUN npm ci --omit=dev
 
 COPY --from=development /usr/src/app/gAuthCraft/dist ./dist
 
