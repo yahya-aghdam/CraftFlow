@@ -12,4 +12,3 @@ services:
     env_file:
       - ./src/config/.env
     command: npm run dev
-    restart: always

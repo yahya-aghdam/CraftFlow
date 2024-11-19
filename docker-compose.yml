@@ -7,4 +7,3 @@ services:
       - "50051:50051" # gRPC
     env_file:
       - ./src/config/.env
-    restart: always

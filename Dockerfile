@@ -1,7 +1,7 @@
 # Make dev app
 FROM node:22-alpine AS development
 
-WORKDIR /usr/src/app/gAuthCraft
+WORKDIR /usr/src/app/gAuthCraft_dev
 
 COPY package*.json .
 
@@ -18,8 +18,8 @@ WORKDIR /usr/src/app/gAuthCraft
 
 COPY package*.json .
 
-RUN npm ci --omit=dev
+RUN npm ci
 
-COPY --from=development /usr/src/app/gAuthCraft/dist ./dist
+COPY --from=development /usr/src/app/gAuthCraft_dev/dist ./dist
 
 CMD ["node","dist/index.js"]
