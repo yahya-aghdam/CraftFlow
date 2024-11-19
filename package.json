@@ -4,9 +4,12 @@
   "description": "gAuthCraft is a light microservice and flexible auth system for Google Oauth 2 that works with gRPC and easily deploy with Docker.",
   "main": "index.ts",
   "scripts": {
-    "start": "node src/index.ts",
     "dev": "nodemon src/index.ts",
-    "makeProto": "protoc --plugin=protoc-gen-ts_proto=./node_modules/.bin/protoc-gen-ts_proto --ts_proto_out=. ./src/protos/auth.proto --ts_proto_opt=outputServices=grpc-js,esModuleInterop=true"
+    "build": "rm -rf ./dist && tsc",
+    "start": "npm run build && node dist/index.js",
+    "makeProto": "protoc --plugin=protoc-gen-ts_proto=./node_modules/.bin/protoc-gen-ts_proto --ts_proto_out=. ./src/protos/auth.proto --ts_proto_opt=outputServices=grpc-js,esModuleInterop=true",
+    "docker:dev": "docker compose -f docker-compose.dev.yml up",
+    "docker:build": "docker compose up --build"
   },
   "dependencies": {
     "@grpc/grpc-js": "^1.12.2",
@@ -21,6 +24,7 @@
     "@types/jsonwebtoken": "^9.0.7",
     "nodemon": "^3.1.7",
     "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
     "ts-proto": "^2.3.0",
     "typescript": "^5.6.3"
   },

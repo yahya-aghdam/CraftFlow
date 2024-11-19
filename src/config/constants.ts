@@ -27,5 +27,5 @@ export const googleUrls: ProviderURLT = {
 };
 
 export const redirect_api_url = linksmith(MAIN_URL, { port: HTTP_PORT, paths: ["api", "g_auth", "google"] })
-export const proto_url = linksmith(PROTO_URL, { port: PROTO_PORT })
+export const proto_url = `${PROTO_URL}:${PROTO_PORT}`
 

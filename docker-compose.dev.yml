@@ -1,0 +1,15 @@
+services:
+  gauthcraft:
+    build:
+      context: .
+      target: development
+    volumes:
+      - ./:/usr/src/app/gAuthCraft
+      - /usr/src/app/gAuthCraft/node_modules
+    ports:
+      - "3000:3000" # HTTP
+      - "50051:50051" # gRPC
+    env_file:
+      - ./src/config/.env
+    command: npm run dev
+    restart: always

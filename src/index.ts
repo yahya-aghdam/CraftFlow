@@ -23,5 +23,5 @@ app.listen(HTTP_PORT, () => DEV_MODE && console.log(`Auth service running on ==>
 const server = new Server();
 server.addService(AuthCheckService, { verifyToken })
 server.bindAsync(proto_url, ServerCredentials.createInsecure(), () => {
-    console.log(`gRPC server running on ==> grpc://${linksmith(PROTO_URL,{port:PROTO_PORT})} `);
+    console.log(`gRPC server running on ==> grpc://${proto_url}`);
 });
