@@ -28,13 +28,13 @@ This is a solution for both http side and gRPC side requests. Http server will l
 6. Default algorithm for signature is `HS256` but you can change it by passing algorithm to `tokenMaker` function.
 7. This repo uses [linksmith](https://www.npmjs.com/package/linksmith) package to make URL easily.
 
-![HTTP server](./asset/http.png)
+![HTTP server](https://github.com/yahya-aghdam/gAuthCraft/blob/main/asset/http.png?raw=true)
 
 ### How gRPC server works?
 
 gRPC server designed to work with application internal connection. You can connect it with any language based on `auth.proto` file and verify user token with it.
 
-![HTTP server](./asset/grpc.png)
+![HTTP server](https://github.com/yahya-aghdam/gAuthCraft/blob/main/asset/grpc.png?raw=true)
 
 ## Jenkins Pipeline for Node.js App with Docker
 
