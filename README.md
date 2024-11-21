@@ -28,7 +28,7 @@ This is a solution for both http side and gRPC side requests. Http server will l
 6. Default algorithm for signature is `HS256` but you can change it by passing algorithm to `tokenMaker` function.
 7. This repo uses [linksmith](https://www.npmjs.com/package/linksmith) package to make URL easily.
 
-![HTTP server](https://github.com/yahya-aghdam/gAuthCraft/blob/main/asset/http.png?raw=true)
+![HTTP server](https://github.com/yahya-aghdam/gAuthCraft/blob/main/asset/http_server.png?raw=true)
 
 ### How gRPC server works?
 
