@@ -35,8 +35,10 @@ export function getCookies(req: Request): { [key: string]: string } | undefined 
 
     if (headersCookie) {
         cookies = headersCookie.split(';').reduce((res, item) => {
-            const data = item.trim().split('=');
-            return { ...res, [data[0]]: data[1] };
+            const data = item.trim().split('=')
+            const key = data[0].trim();
+            const value = data[1]?.trim();
+            return { ...res, [key]: value };
         }, {})
     }
 

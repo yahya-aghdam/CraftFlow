@@ -18,10 +18,11 @@ export default class AuthService {
                     function (err: any, decoded: any) {
                         if (decoded) {
                             if (checkTime) {
-                                isVerified = true;
-                                if (new Date(decoded.data.expires) <= new Date(Date.now())) {
-                                    isVerified = false;
+                                if (new Date(decoded.data.expires) > new Date(Date.now())) {
+                                    isVerified = true;
                                 }
+                            } else {
+                                isVerified = true;
                             }
                         } else {
                             DEV_MODE && console.log(err);
@@ -71,11 +72,6 @@ export default class AuthService {
     }
 
 
-
-    async test(data: any) {
-
-        return data;
-    };
 }
 
 

@@ -30,29 +30,28 @@ export async function verifyToken(
                 function (err: any, decoded: any) {
 
                     if (decoded) {
-
-                        tokenResult = {
-                            isVerified: true,
-                            data: {
-                                id: decoded.data.id,
-                                name: decoded.data.name,
-                                email: decoded.data.email,
-                                picture: decoded.data.picture,
-                                expires: decoded.data.expires,
-                            }
-                        }
-
                         if (tokenRequest.checkTime) {
-                            if (new Date(decoded.data.expires) <= new Date(Date.now())) {
+                            if (new Date(decoded.data.expires) > new Date(Date.now())) {
                                 tokenResult = {
-                                    isVerified: false,
+                                    isVerified: true,
                                     data: {
-                                        id: "",
-                                        name: "",
-                                        email: "",
-                                        picture: "",
-                                        expires: "",
+                                        id: decoded.data.id,
+                                        name: decoded.data.name,
+                                        email: decoded.data.email,
+                                        picture: decoded.data.picture,
+                                        expires: decoded.data.expires,
                                     }
+                                }
+                            }
+                        } else {
+                            tokenResult = {
+                                isVerified: true,
+                                data: {
+                                    id: decoded.data.id,
+                                    name: decoded.data.name,
+                                    email: decoded.data.email,
+                                    picture: decoded.data.picture,
+                                    expires: decoded.data.expires,
                                 }
                             }
                         }
