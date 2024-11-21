@@ -4,7 +4,7 @@ import { DEV_MODE } from "../config/constants";
 import { JWT_SECRET } from "../config/dotenv";
 import { TokenRequest, TokenResult } from './auth';
 
-
+// Auth service for gRPC
 export async function verifyToken(
     call: ServerUnaryCall<TokenRequest, TokenResult>,
     callback: sendUnaryData<TokenResult>

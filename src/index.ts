@@ -8,20 +8,37 @@ import { verifyToken } from './protos/auth.service.proto';
 import { AuthCheckService } from './protos/auth';
 import linksmith from 'linksmith';
 
+// Make sure that all necessary vars are in .env file
 validateEnv();
 
-// Expressjs
+// Import Express.js and initialize the app
 const app = express();
+
+// Middleware to parse incoming JSON requests
 app.use(express.json());
 
+// Use the `authRoutes` router for the authentication API, mounted at the specified `API_PATH`
 app.use(API_PATH, authRoutes);
 
-app.listen(HTTP_PORT, () => DEV_MODE && console.log(`Auth service running on ==> ${linksmith(MAIN_URL,{port:HTTP_PORT})}`));
+// Start the Express server on the specified HTTP_PORT
+app.listen(HTTP_PORT, () =>
+    DEV_MODE &&
+    console.log(`Auth service running on ==> ${linksmith(MAIN_URL, { port: HTTP_PORT })}`)
+);
+// Log the server's URL in development mode using the `linksmith` utility
 
-
-// Proto
+// gRPC Server Initialization
 const server = new Server();
-server.addService(AuthCheckService, { verifyToken })
-server.bindAsync(proto_url, ServerCredentials.createInsecure(), () => {
-    console.log(`gRPC server running on ==> grpc://${proto_url}`);
-});
+// Create a new gRPC server instance
+
+server.addService(AuthCheckService, { verifyToken });
+// Register the `AuthCheckService` with the gRPC server and bind the `verifyToken` method to handle its calls
+
+server.bindAsync(
+    proto_url, // The address and port for the gRPC server to listen on
+    ServerCredentials.createInsecure(), // Use insecure credentials (no SSL/TLS) for simplicity in development
+    () => {
+        // Callback function executed once the gRPC server is bound successfully
+        console.log(`gRPC server running on ==> grpc://${proto_url}`);
+    }
+);

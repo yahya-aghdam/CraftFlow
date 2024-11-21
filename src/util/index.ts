@@ -6,6 +6,7 @@ import jwt from 'jsonwebtoken';
 import { googleUrls, redirect_api_url } from '../config/constants';
 import linksmith from 'linksmith';
 
+// Make sure that all necessary vars are in .env file
 export function validateEnv() {
     const requiredVars = [
         'JWT_SECRET',
@@ -28,6 +29,7 @@ export function validateEnv() {
     }
 }
 
+// Get cookies from request
 export function getCookies(req: Request): { [key: string]: string } | undefined {
 
     const headersCookie = req.headers.cookie;
@@ -45,20 +47,23 @@ export function getCookies(req: Request): { [key: string]: string } | undefined 
     return cookies
 }
 
+// Make cookie and save it in client browser
 export function cookieMaker(res: Response, cookie: CookieT) {
     res.cookie(cookie.name, cookie.data, cookie.options);
 }
 
+// Delete cookie by making expire time to 0
 export function cookieDeleter(res: Response, cookieName: string) {
     res.cookie(cookieName, "", { maxAge: 0 });
 }
 
+// Sign data with specific algorithm and return it
 export function tokenMaker(data: any, algorithm?: string): string {
     return jwt.sign({ data: data, algorithm: algorithm }, JWT_SECRET);
 }
 
 
-
+// Make URL for redirecting user to Google Oauth2 server
 export function googleURLMaker(scope: string = ""): string {
 
     scope == "" ? scope = googleUrls.scope : scope
@@ -75,6 +80,7 @@ export function googleURLMaker(scope: string = ""): string {
     })
 }
 
+// Return Date object based on expiration days
 export function expireTimeMaker(days: number): Date {
     return new Date(Date.now() + days * 24 * 60 * 60 * 1000)
 }

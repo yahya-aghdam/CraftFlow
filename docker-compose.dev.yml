@@ -1,14 +1,14 @@
 services:
-  gauthcraft:
-    build:
-      context: .
-      target: development
-    volumes:
-      - ./:/usr/src/app/gAuthCraft
-      - /usr/src/app/gAuthCraft/node_modules
-    ports:
-      - "3000:3000" # HTTP
-      - "50051:50051" # gRPC
-    env_file:
-      - ./src/config/.env
-    command: npm run dev
+  gauthcraft: # Name of the service
+    build: 
+      context: . # Build context is the current directory
+      target: development # Target the `development` stage in the Dockerfile
+    volumes: 
+      - ./:/usr/src/app/gAuthCraft # Mount the current directory into the container at `/usr/src/app/gAuthCraft`
+      - /usr/src/app/gAuthCraft/node_modules # Bind mount to persist `node_modules` locally within the container
+    ports: 
+      - "3000:3000" # Map host port 3000 to container port 3000 (HTTP server)
+      - "50051:50051" # Map host port 50051 to container port 50051 (gRPC server)
+    env_file: 
+      - ./src/config/.env # Load environment variables from the `.env` file located at `./src/config/`
+    command: npm run dev # Override the default command and run `npm run dev` to start the development server

@@ -1,22 +1,23 @@
 services:
-  gauthcraft:
-    build:
-      context: .
-    ports:
-      - "3000:3000" # HTTP
-      - "50051:50051" # gRPC
-    env_file:
-      - ./src/config/.env
-    depends_on:
-      - jenkins
-  jenkins:
-      image: jenkins/jenkins:lts
-      container_name: jenkins
-      ports:
-        - "8080:8080"
-        - "50000:50000"
-      volumes:
-        - jenkins_home:/var/jenkins_home
+  gauthcraft: # The service for your authentication application
+    build: 
+      context: . # Use the current directory for the build context
+    ports: 
+      - "3000:3000" # Map host port 3000 to container port 3000 for HTTP
+      - "50051:50051" # Map host port 50051 to container port 50051 for gRPC
+    env_file: 
+      - ./src/config/.env # Load environment variables from the specified .env file
+    depends_on: 
+      - jenkins # Ensure the `jenkins` service starts before `gauthcraft`
+
+  jenkins: # Jenkins service configuration
+    image: jenkins/jenkins:lts # Use the Long-Term Support (LTS) version of Jenkins
+    container_name: jenkins # Name the container "jenkins" for easy identification
+    ports: 
+      - "8080:8080" # Map host port 8080 to container port 8080 for Jenkins web UI
+      - "50000:50000" # Map host port 50000 to container port 50000 for Jenkins agents
+    volumes: 
+      - jenkins_home:/var/jenkins_home # Persist Jenkins data using a named volume
 
 volumes:
-  jenkins_home:
+  jenkins_home: # Named volume for persisting Jenkins data
